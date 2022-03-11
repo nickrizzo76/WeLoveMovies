@@ -4,6 +4,7 @@ const cors = require("cors");
 const notFound = ("./errors/notFound")
 const errorHandler = ("./errors/errorHandler")
 const moviesRouter = require("./movies/movies.router");
+//if (process.env.USER) require("dotenv").config();
 
 app.use(express.json());
 //app.use(cors());
