@@ -2,6 +2,13 @@ const knex = require("../db/connection");
 
 const tableName = "movies";
 
+function read(movie_id) {
+  return knex(tableName)
+    .select("*")
+    .where({ movie_id: movie_id })
+    .first()
+}
+
 function list() {
   return knex(tableName).select("*");
 }
@@ -15,6 +22,7 @@ function listShowing() {
 }
 
 module.exports = {
+  read,
   list,
   listShowing,
 };
