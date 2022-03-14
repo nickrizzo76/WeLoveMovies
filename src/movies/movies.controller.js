@@ -1,6 +1,7 @@
 const service = require("./movies.service");
 
 async function movieExists(req, res, next) {
+    console.log("does movie exist")
   const movie = await service.read(req.params.movieId);
   if (movie) {
     res.locals.movie = movie;
@@ -22,7 +23,7 @@ async function list(req, res, _next) {
     const data = await service.listShowing();
     return res.json({ data });
   }
-  
+
   const data = await service.list();
   res.json({ data });
 }
@@ -30,5 +31,5 @@ async function list(req, res, _next) {
 module.exports = {
   read: [movieExists, read],
   list,
-  // movieExists,
+  movieExists,
 };

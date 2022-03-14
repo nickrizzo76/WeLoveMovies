@@ -3,7 +3,7 @@ const moviesController = require("./movies.controller");
 const theatersRouter = require("../theaters/theaters.router")
 const methodNotAllowed = require("../errors/methodNotAllowed");
 
-//router.route('/:movieId/theaters', moviesController.movieExists, theatersRouter)  
+router.use('/:movieId/theaters', moviesController.movieExists, theatersRouter)  
 
 router.route('/:movieId')
     .get(moviesController.read)

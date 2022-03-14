@@ -18,18 +18,16 @@ function list() {
     .then(moviesReduce);
 }
 
-function read(movie_id) {
-  // join between theaters table and movies_theaters table
-  return knex("movies")
+function getTheatersShowingMovie(movie_id) {
+ return knex("movies as m")
     .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
     .join("theaters as t", "mt.theater_id", "t.theater_id")
     .select("t.*", "mt.is_showing", "mt.movie_id")
-    .where({ "m.movie_id": "mt.movie_id" })
-    .groupBy(theater_id);
+    .where({ "m.movie_id": movie_id })
 }
 
 
 module.exports = {
   list,
-  read,
+  getTheatersShowingMovie,
 };
