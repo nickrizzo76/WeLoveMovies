@@ -3,7 +3,6 @@ const moviesController = require("./movies.controller");
 const theatersRouter = require("../theaters/theaters.router")
 const methodNotAllowed = require("../errors/methodNotAllowed");
 
-//const { method } = require("lodash");
 //router.route('/:movieId/theaters', moviesController.movieExists, theatersRouter)  
 
 router.route('/:movieId')

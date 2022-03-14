@@ -10,7 +10,7 @@ app.use(express.json());
 //app.use(cors());
 
 app.use("/movies", moviesRouter);
-//app.use("/theaters", theatersRouter)
+app.use("/theaters", theatersRouter)
 // app.use(notFound);
 // app.use(errorHandler);
 
