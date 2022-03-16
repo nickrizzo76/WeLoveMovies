@@ -8,5 +8,9 @@ router.route('/:reviewId')
     .delete(controller.delete)
     .all(methodNotAllowed)
 
+router.route('/')
+    .get(controller.list)
+    .all(methodNotAllowed)
+
 
 module.exports = router;

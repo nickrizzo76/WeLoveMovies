@@ -1,33 +1,50 @@
 const service = require("./reviews.service");
 
 async function reviewExists(req, res, next) {
-    console.log(`req.params.reviewId: ${req.params.reviewId}`)
   const review = await service.read(req.params.reviewId);
   if (review) {
     res.locals.review = review;
-    console.log(`res.locals.review.review_id: ${res.locals.review_id}`)
     return next();
   }
   next({
     status: 404,
-    message: "Review cannot be found.",
+    message: "/cannot be found/i",
   });
 }
 
 async function update(req, res, next) {
-  // IMPLEMENT
-  res.status(200);
+  const updatedReview = {
+    ...res.locals.review,
+    ...req.body.data,
+  };
+
+  const data = await service.update(updatedReview);
+  if (data) {
+    return res.json({ data });
+  }
+  next({
+    status: 404,
+    message: "Review not updated",
+  });
 }
 
 async function destroy(req, res, next) {
-    console.log(`review_id in controller ${res.locals.review.review_id}`)
   const deleted = await service.delete(res.locals.review.review_id);
   if (deleted) return res.sendStatus(204);
   return next({ status: 500, message: `Review not deleted` });
 }
 
+async function list(req, res, next) {
+    const { movie_id } = res.locals.movie
+    const data = await service.list(movie_id)
+    if(data) {
+        return res.json({ data })
+    }
+
+}
 
 module.exports = {
+  list,
   update: [reviewExists, update],
   delete: [reviewExists, destroy],
 };
