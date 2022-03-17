@@ -1,5 +1,6 @@
 const service = require("./reviews.service");
 
+// check if review exists
 async function reviewExists(req, res, next) {
   const review = await service.read(req.params.reviewId);
   if (review) {
@@ -12,6 +13,7 @@ async function reviewExists(req, res, next) {
   });
 }
 
+// update review with new body data
 async function update(req, res, next) {
   const updatedReview = {
     ...res.locals.review,
@@ -28,12 +30,14 @@ async function update(req, res, next) {
   });
 }
 
+// delete review
 async function destroy(req, res, next) {
   const deleted = await service.delete(res.locals.review.review_id);
   if (deleted) return res.sendStatus(204);
   return next({ status: 500, message: `Review not deleted` });
 }
 
+// list reviews for specific movie
 async function list(req, res, next) {
     const { movie_id } = res.locals.movie
     const data = await service.list(movie_id)

@@ -1,7 +1,7 @@
-const { add } = require("lodash");
 const knex = require("../db/connection");
 const reduceProperties = require("../utils/reduce-properties");
 
+// build object with emedded movie data
 const moviesReduce = reduceProperties("theater_id", {
   movie_id: ["movies", null, "movie_id"],
   title: ["movies", null, "title"],
@@ -11,6 +11,7 @@ const moviesReduce = reduceProperties("theater_id", {
   image_url: ["movies", null, "image_url"],
 });
 
+// list theaters with movies data embedded
 function list() {
   return knex("theaters as t")
     .join("movies_theaters as mt", "mt.theater_id", "t.theater_id")
@@ -18,6 +19,7 @@ function list() {
     .then(moviesReduce);
 }
 
+// list theaters that show a certain movie
 function getTheatersShowingMovie(movie_id) {
  return knex("movies as m")
     .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")

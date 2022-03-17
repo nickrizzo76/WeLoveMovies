@@ -1,6 +1,6 @@
 const knex = require("../db/connection");
-const reduceProperties = require("../utils/reduce-properties");
 
+// query reviews for a movie with critic information emedded into each review
 function list(movie_id) {
   if (movie_id) {
     return knex("reviews as r")
@@ -11,23 +11,28 @@ function list(movie_id) {
   }
 }
 
+// query review
 function read(review_id) {
   return knex("reviews").where({ review_id: review_id }).first();
 }
 
+// query critic info
 function getCriticInfo(critic_id) {
   return knex("critics").where({ critic_id }).first();
 }
 
+// query review with critic info embedded into review object
 async function getWithCritic(review) {
   review.critic = await getCriticInfo(review.critic_id);
   return review;
 }
 
+// delete review
 function destroy(review_id) {
   return knex("reviews").where({ review_id: review_id }).del();
 }
 
+// update review with new review and with critic info
 function update(updatedReview) {
   return knex("reviews")
     .select("*")
