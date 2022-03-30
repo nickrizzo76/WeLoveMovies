@@ -1,9 +1,9 @@
-#**WeLoveMovies App**
+#**WeLoveMovies App**#
 
 ###WeLoveMovies is an app that displays and filters movies by theater.  It was intended as an back-end educational exercise, and with a few tweaks could display live data from theaters around the country. This repository is the back-end of the full WeLoveMovies. The client can be found [here](https://github.com/nickrizzo76/WeLoveMovies-Client).
 
 
-##**Links**
+##**Links**##
 - [Live Demo](https://quiet-headland-55216.herokuapp.com/)
 - [API Documentation](https://github.com/nickrizzo76/WeLoveMovies/tree/main/src)
 
