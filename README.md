@@ -26,5 +26,5 @@
 - Knex
 - Node
 
-## **Client 
+## **Client** 
 Built as a back-end service to the [WeLoveMovies client](https://github.com/nickrizzo76/WeLoveMovies-Client)
